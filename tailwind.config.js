@@ -1,17 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ["./components/*.vue", "./app.vue"],
   theme: {
     colors: {
-      blue: "#1fb6ff",
-      purple: "#7e5bef",
-      pink: "#ff49db",
-      orange: "#ff7849",
-      green: "#13ce66",
-      yellow: "#ffc82c",
-      "gray-dark": "#273444",
-      gray: "#8492a6",
-      "gray-light": "#d3dce6",
+      'purple': "#7e5bef",
+      'pink': "#ff49db",
+      'blue-light': "#add8e6",
+      'orange': "#ff7f50",
+      'green': "#3cb371",
+      'yellow': "#ffc82c",
+      'gray-dark': "#333333",
+      'gray-light': "#f5f5f5",
+      'gray': "#8492a6",
     },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
