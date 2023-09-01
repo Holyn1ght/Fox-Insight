@@ -15,7 +15,7 @@
         </p>
         <div class="flex justify-between mt-2">
             <h3 class="text-sm font-semibold">Anton Guliuk</h3>
-            <a href="#" class="flex justify-center items-center px-3 text-sm text-gray-light rounded-2xl bg-green hover:opacity-70">More</a>
+            <NuxtLink to="/article" class="flex justify-center items-center px-3 text-sm text-gray-light rounded-2xl bg-green hover:opacity-70">More</NuxtLink>
         </div>
     </div>
   </article>

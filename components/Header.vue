@@ -6,7 +6,7 @@
         <img class="w-8" src="../src/img/fox-logo.svg" alt="Fox Insight logo" />
       </li>
       <li>
-        <button class="p-2 hover:focus:opacity-40">
+        <button @click="toggleMenu" class="p-2 hover:focus:opacity-40">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="28"
@@ -24,25 +24,35 @@
           </svg>
         </button>
       </li>
-      <li class="absolute top-12 w-full hidden">
+      <li id="burgerMenu" class="absolute top-12 w-full hidden">
         <ul>
           <li
             class="flex justify-center items-center h-11 bg-green hover:opacity-70 border-b border-gray-light"
           >
-            <a class="text-gray-light" href="#">Blogs</a>
+            <NuxtLink to="/blog" class="text-gray-light w-full h-full flex justify-center items-center" href="#">Blogs</NuxtLink>
           </li>
           <li
             class="flex justify-center items-center h-11 bg-green hover:opacity-70 border-b border-gray-light"
           >
-            <a class="text-gray-light" href="#">Create Post</a>
+            <NuxtLink to="/create" class="text-gray-light w-full h-full flex justify-center items-center" >Create Post</NuxtLink>
           </li>
           <li
             class="flex justify-center items-center h-11 bg-green hover:opacity-70 border-b border-gray-light"
           >
-            <a class="text-gray-light" href="#">Account</a>
+            <NuxtLink to="/account" class="text-gray-light w-full h-full flex justify-center items-center" >Account</NuxtLink>
           </li>
         </ul>
       </li>
     </ul>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    toggleMenu() {
+      document.getElementById("burgerMenu").classList.toggle("hidden");
+    },
+  },
+};
+</script>

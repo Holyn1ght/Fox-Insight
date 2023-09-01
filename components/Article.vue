@@ -4,7 +4,7 @@
       <h2 class="text-2xl font-bold">Lorem</h2>
     </div>
     <div class="p-3">
-      <p class="text-sm block min-h-screen">
+      <p class="text-sm block">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea

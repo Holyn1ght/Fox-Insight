@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <main>
-      <Article></Article>
+      <CreateForm></CreateForm>
     </main>
     <Footer></Footer>
   </div>
@@ -12,13 +12,12 @@
 #app {
   min-height: 100vh;
   margin: 0;
-  /* display: grid;
-  grid-template-rows: auto 1fr auto; */
   display: flex;
   flex-direction: column;
 }
 
 main {
   flex: 1;
+  display: flex;
 }
 </style>
