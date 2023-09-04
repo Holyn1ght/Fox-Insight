@@ -11,6 +11,7 @@
         class="h-10 border border-gray-dark rounded-md w-full px-3 py-1"
         type="text"
         placeholder="Fox Insight os the best blog ever"
+        maxlength="60"
       />
     </label>
 
@@ -28,17 +29,44 @@
     </label>
     <label>
       <h2 class="text-2xl font-semibold text-gray-dark">Enter Post Text</h2>
-      <input
-        class="min-h-[340px] border border-gray-dark rounded-md w-full px-3 py-1"
+      <textarea
+        class="min-h-[340px] h-[55%] border border-gray-dark rounded-md w-full px-3 py-3"
         type="text"
-      />
+      ></textarea>
     </label>
 
     <button
-      class="mt-14 h-6 flex justify-center items-center text-white bg-green rounded-md w-full font-semibold"
+      class="h-6 mt-2 flex justify-center items-center text-white bg-green rounded-md w-full font-semibold"
       type="submit"
     >
       Upload
     </button>
   </form>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      title: "",
+      description: "",
+      body: "",
+      date_posted: "",
+    };
+  },
+  created() {
+    this.date_posted = new Date().toLocaleDateString();
+  },
+  methods: {
+    createArticle() {
+      let articleData = {
+        title: this.title,
+        description: this.description,
+        body: this.body,
+        date_posted: this.data_posted,
+      };
+      // submit to server
+    },
+  },
+};
+</script>
