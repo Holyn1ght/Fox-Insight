@@ -9,12 +9,9 @@
 </template>
 
 <script>
-import { articles } from "~/mockdata";
 export default {
-  data() {
-    return {
-      articles,
-    };
+  props: {
+    articles: Array,
   },
 };
 </script>

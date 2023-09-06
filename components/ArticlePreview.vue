@@ -8,9 +8,9 @@
         {{ article.description }}
       </p>
       <div class="flex justify-between mt-2">
-        <h3 class="text-sm font-semibold">Anton Guliuk</h3>
+        <h3 class="text-sm font-semibold">{{ article.author_info.username }}</h3>
         <NuxtLink
-        :to="`/article/${article.id}`"
+          :to="`/article/${article._id}`"
           class="flex justify-center items-center px-3 text-sm text-gray-light rounded-2xl bg-green hover:opacity-70"
           >More</NuxtLink
         >

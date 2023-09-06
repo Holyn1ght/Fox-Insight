@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <main>
-      <ArticleList />
+      <ArticleList :articles="articles" />
     </main>
     <Footer></Footer>
   </div>
@@ -20,3 +20,24 @@ main {
   flex: 1;
 }
 </style>
+
+<script>
+import api from "../services/api";
+
+export default {
+  data() {
+    return {
+      articles: [],
+    };
+  },
+
+  async created() {
+    try {
+      const response = await api.getArticles();
+      this.articles = response.data;
+    } catch (error) {
+      console.error("Error while getting articles: ", error);
+    }
+  },
+};
+</script>

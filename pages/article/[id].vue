@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <main>
-      <Article :article="article" ></Article>
+      <Article :article="article"></Article>
     </main>
     <Footer></Footer>
   </div>
@@ -23,16 +23,22 @@ main {
 </style>
 
 <script>
-import { articles } from "~/mockdata";
+import api from "../../services/api";
+
 export default {
   data() {
     return {
-      article: "nihuya",
+      article: "",
+    };
+  },
+  async created() {
+    try {
+      const id = this.$route.params.id;
+      const response = await api.getArticleByID(id);
+      this.article = response.data;
+    } catch (error) {
+      console.error("Error while getting getArticleByID: ", error);
     }
   },
-  mounted() {
-    const id = Number(this.$route.params.id);
-    this.article = articles.find(a => a.id === id)
-  }
 };
 </script>
