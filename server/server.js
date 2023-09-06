@@ -15,7 +15,10 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((error) => console.error("Could not connect to MongoDB", error));
 
+// Services
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes connecting
 app.use("/articles", articleRoutes);
