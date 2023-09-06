@@ -1,5 +1,5 @@
 <template>
-  <div class="h-12 bg-gray-light">
+  <div class="h-12 bg-gray-light z-10">
     <ul class="flex justify-around h-full items-center relative">
       <li><p class="font-bold text-orange">Home</p></li>
       <li>

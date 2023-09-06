@@ -16,6 +16,16 @@ export default {
       },
     });
   },
+  updateArticle(id, articleData) {
+    return axios.put(`${API_URL}/articles/${id}`, articleData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  },
+  deleteArticle(id) {
+    return axios.delete(`${API_URL}/articles/${id}`);
+  },
   getUsers() {
     return axios.get(`${API_URL}/users`);
   },

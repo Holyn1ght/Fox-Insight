@@ -34,6 +34,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Add new article
 router.post("/", async (req, res) => {
   const { title, description, body } = req.body;
   const author_info = "64f6fa65fcd6806bf640161c"; // temporary data until Auth0
@@ -52,6 +53,52 @@ router.post("/", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error when adding article" });
+  }
+});
+
+// Update article by _id
+router.put("/:id", async (req, res) => {
+  try {
+    const { title, description, body } = req.body;
+
+    const article = await Article.findById(req.params.id);
+
+    if (!article) {
+      return res.status(404).json({ message: "Article not found" });
+    }
+
+    article.title = title;
+    article.description = description;
+    article.body = body;
+
+    const updatedArticle = await article.save();
+
+    res.json(updatedArticle);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error during article update" });
+  }
+});
+
+// Delete article by _id
+router.delete("/:id", async (req, res) => {
+  try {
+    console.log("Delete route accessed for ID:", req.params.id);
+    const deletedArticle = await Article.findByIdAndDelete(req.params.id);
+
+    if (!deletedArticle) {
+      return res.status(404).json({ message: "Article not found" });
+    }
+
+    console.log(req.params.id, "successfully deleted");
+
+    res.json({
+      message: "Article successfully deleted",
+      article: deletedArticle,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error during article deletion" });
   }
 });
 
