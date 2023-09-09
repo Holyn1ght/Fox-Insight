@@ -1,6 +1,6 @@
 <template>
   <article class="bg-gray-light h-72 border flex flex-col relative">
-    <button @click="deleteArticle" type="button">
+    <button @click="deleteCurrentArticle" type="button">
       <div class="absolute top-2 right-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -37,16 +37,16 @@
       </p>
       <div class="flex justify-between mt-2">
         <h3 class="text-sm font-semibold">
-          {{ article.author_info.username }}
+          {{ article.author_data.username }}
         </h3>
         <div class="flex">
           <NuxtLink
-            :to="`/article/edit/${article._id}`"
+            :to="`/article/edit/${article.id}`"
             class="flex justify-center items-center px-3 text-sm text-gray-light rounded-2xl bg-green hover:opacity-70 mr-2"
             >Edit</NuxtLink
           >
           <NuxtLink
-            :to="`/article/${article._id}`"
+            :to="`/article/${article.id}`"
             class="flex justify-center items-center px-3 text-sm text-gray-light rounded-2xl bg-green hover:opacity-70"
             >More</NuxtLink
           >
@@ -56,26 +56,20 @@
   </article>
 </template>
 
-<script>
-import api from "../services/api.js";
+<script setup>
+import supabase from "../services/supbase_api";
 
-export default {
-  props: {
-    article: {
-      type: Object,
-      required: true,
-    },
+const props = defineProps({
+  article: {
+    type: Object,
+    required: true,
   },
-  methods: {
-    async deleteArticle() {
-      try {
-        await api.deleteArticle(this.article._id);
-        window.location.reload();
-      } catch (error) {
-        console.error("Error deleting article:", error);
-        // TODO user warn
-      }
-    },
-  },
-};
+});
+
+
+
+async function deleteCurrentArticle() {
+  await supabase.deleteArticle(props.article.id);
+}
+
 </script>

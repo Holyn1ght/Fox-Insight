@@ -8,10 +8,20 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    articles: Array,
-  },
-};
+<script setup>
+import supapi from "../services/supbase_api";
+
+const articles = ref(null);
+const apiError = ref(null);
+
+onMounted(async () => {
+  const result = await supapi.fetchArticles();
+
+  if (result.error) {
+    apiError.value = result.error;
+  } else {
+    articles.value = result.data;
+  }
+});
+
 </script>

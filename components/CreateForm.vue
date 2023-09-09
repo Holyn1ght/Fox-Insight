@@ -1,6 +1,6 @@
 <template>
   <form
-    @submit.prevent="addNewArticle"
+    @submit.prevent="submitArticle"
     class="bg-gray-light border m-6 px-3 py-4 w-full"
   >
     <label>
@@ -50,32 +50,27 @@
   </form>
 </template>
 
-<script>
-import api from "../services/api";
+<script setup>
+import supbase_api from "~/services/supbase_api";
 
-export default {
-  data() {
-    return {
-      title: "",
-      description: "",
-      body: "",
+const title = ref(null);
+const description = ref(null);
+const body = ref(null);
+
+const submitArticle = async () => {
+  try {
+    const articleData = {
+      title: title.value,
+      description: description.value,
+      body: body.value,
     };
-  },
-  methods: {
-    async addNewArticle() {
-      const articleData = {
-        title: this.title,
-        description: this.description,
-        body: this.body,
-      };
 
-      try {
-        const response = await api.addArticle(articleData);
-        console.log("Article added:", response.data);
-      } catch (error) {
-        console.error("Error adding article:", error);
-      }
-    },
-  },
+    // const response = await addArticle(articleData);
+    const response = await supbase_api.addArticle(articleData);
+
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
 };
 </script>

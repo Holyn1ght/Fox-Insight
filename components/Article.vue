@@ -9,7 +9,7 @@
       <p class="text-sm block">{{ article.body }}</p>
       <div class="flex justify-end mt-2">
         <h3 class="text-sm font-semibold">
-          {{ article.author_info?.username}}
+          {{ article.author_data?.username}}
         </h3>
       </div>
     </div>

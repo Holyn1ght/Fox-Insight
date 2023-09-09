@@ -1,5 +1,10 @@
 <template>
   <div class="h-12 bg-gray-light z-10">
+    <!-- Test code start block -->
+    <div class="absolute">
+      <!-- <p>{{ session }}</p> -->
+    </div>
+    <!-- Test code end block -->
     <ul class="flex justify-around h-full items-center relative">
       <li><p class="font-bold text-orange">Home</p></li>
       <li>
@@ -29,17 +34,30 @@
           <li
             class="flex justify-center items-center h-11 bg-green hover:opacity-70 border-b border-gray-light"
           >
-            <NuxtLink to="/blog" class="text-gray-light w-full h-full flex justify-center items-center" href="#">Blogs</NuxtLink>
+            <NuxtLink
+              to="/blog"
+              class="text-gray-light w-full h-full flex justify-center items-center"
+              href="#"
+              >Blogs</NuxtLink
+            >
           </li>
           <li
             class="flex justify-center items-center h-11 bg-green hover:opacity-70 border-b border-gray-light"
           >
-            <NuxtLink to="/create" class="text-gray-light w-full h-full flex justify-center items-center" >Create Post</NuxtLink>
+            <NuxtLink
+              to="/create"
+              class="text-gray-light w-full h-full flex justify-center items-center"
+              >Create Post</NuxtLink
+            >
           </li>
           <li
             class="flex justify-center items-center h-11 bg-green hover:opacity-70 border-b border-gray-light"
           >
-            <NuxtLink to="/account" class="text-gray-light w-full h-full flex justify-center items-center" >Account</NuxtLink>
+            <NuxtLink
+              to="/account"
+              class="text-gray-light w-full h-full flex justify-center items-center"
+              >Account</NuxtLink
+            >
           </li>
         </ul>
       </li>
@@ -47,12 +65,16 @@
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    toggleMenu() {
-      document.getElementById("burgerMenu").classList.toggle("hidden");
-    },
-  },
-};
+<script setup>
+const supabase = useSupabaseClient();
+
+const session = ref(null);
+
+const { data, error } = await supabase.auth.getSession();
+
+session.value = data;
+
+function toggleMenu() {
+  document.getElementById("burgerMenu").classList.toggle("hidden");
+}
 </script>

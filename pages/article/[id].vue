@@ -23,7 +23,7 @@ main {
 </style>
 
 <script>
-import api from "../../services/api";
+import supabase from "~/services/supbase_api";
 
 export default {
   data() {
@@ -32,13 +32,9 @@ export default {
     };
   },
   async created() {
-    try {
-      const id = this.$route.params.id;
-      const response = await api.getArticleByID(id);
-      this.article = response.data;
-    } catch (error) {
-      console.error("Error while getting getArticleByID: ", error);
-    }
+    const id = this.$route.params.id;
+    const response = await supabase.fetchArticleById(id);
+    this.article = response.data[0];
   },
 };
 </script>

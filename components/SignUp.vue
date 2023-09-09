@@ -16,61 +16,86 @@
       <h1 class="text-5xl text-orange">Fox Insight</h1>
     </div>
     <div class="flex flex-col items-center mt-60 px-6">
-      <h2 class="text-4xl text-green font-semibold">Login</h2>
+      <h2 class="text-4xl text-green font-semibold">Sign Up</h2>
       <form
-        @submit.prevent="signIn"
+        @submit.prevent="signUp"
         class="flex flex-col items-center w-full mt-12"
       >
         <input
           v-model="email"
           type="email"
           class="h-12 border border-gray-dark rounded-md w-full px-3 py-1"
-          placeholder="Enter your login"
+          placeholder="Enter your email"
+          required="true"
+        />
+        <input
+          v-model="username"
+          type="text"
+          class="h-12 mt-7 border border-gray-dark rounded-md w-full px-3 py-1"
+          placeholder="Enter your username"
+          required="true"
         />
         <input
           v-model="password"
           type="password"
           class="h-12 mt-7 border border-gray-dark rounded-md w-full px-3 py-1"
           placeholder="Enter your password"
+          required="true"
         />
         <p class="text-red">{{ errorMsg }}</p>
-        <p class="text-green">{{ successMsg }}</p>
         <button
           class="h-12 mt-16 bg-green text-white font-medium w-full rounded-md flex justify-center items-center"
           type="submit"
         >
-          Sign in
+          Sign Up
         </button>
 
         <NuxtLink
-          to="/signup"
+          to="/signin"
           class="h-12 mt-2 text-gray-dark font-medium w-full hover:bg-gray-light flex justify-center items-center"
-          >Sign Up</NuxtLink
+          >Sign in</NuxtLink
         >
       </form>
+    </div>
+    <div
+      class="absolute left-6 right-6 top-1/2 -translate-y-1/2 bg-gray-light drop-shadow-md shadow-orange z-10 flex flex-col items-center py-4"
+      v-if="successMsg != null"
+    >
+      <h3 class="text-xl font-semibold text-gray-dark">Account created!</h3>
+      <p class="text-green mt-2">{{ successMsg }}</p>
+      <NuxtLink
+        class="bg-green text-white py-1 px-3 rounded-md mt-5"
+        to="/signin"
+        >Sign in</NuxtLink
+      >
     </div>
   </div>
 </template>
 
 <script setup>
-const supabase = useSupabaseClient();
+const client = useSupabaseClient();
 const router = useRouter();
 
 const email = ref("");
+const username = ref(null);
 const password = ref(null);
 const errorMsg = ref(null);
 const successMsg = ref(null);
-const userinfo = ref(null);
-async function signIn() {
+
+async function signUp() {
   try {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await client.auth.signUp({
       email: email.value,
       password: password.value,
+      options: {
+        data: {
+          username: username.value,
+        },
+      },
     });
     if (error) throw error;
     errorMsg.value = null;
-    successMsg.value = "Success! You are logged in!";
-    router.push('/blog')
+    successMsg.value = "Check your email to confirm your account";
   } catch (error) {
     errorMsg.value = error.message;
   }
