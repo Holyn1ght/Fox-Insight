@@ -71,6 +71,28 @@ const addArticle = async (articleData) => {
   }
 };
 
+const updateArticle = async (articleData) => {
+  try {
+    const { data, error } = await supabase
+      .from("articles")
+      .update([
+        {
+          title: articleData.title,
+          description: articleData.description,
+          body: articleData.body,
+        },
+      ])
+      .eq("id", articleData.articleId)
+      .select();
+
+    if (error) throw new Error(error.message);
+
+    return { data, error: null };
+  } catch (error) {
+    console.error("Error while updating article:", error.message);
+  }
+};
+
 const deleteArticle = async (articleId) => {
   try {
     const { error } = await supabase
@@ -119,6 +141,7 @@ export default {
   fetchArticles,
   fetchArticleById,
   addArticle,
+  updateArticle,
   deleteArticle,
   getUserInfo,
   get_claims,

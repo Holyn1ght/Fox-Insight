@@ -57,7 +57,7 @@
 </template>
 
 <script setup>
-import supabase from "../services/supbase_api";
+import supabase from "~/services/supbase_api";
 
 const props = defineProps({
   article: {

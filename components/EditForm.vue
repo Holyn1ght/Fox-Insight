@@ -1,7 +1,8 @@
 <template>
-  <form 
+  <form
     @submit.prevent="updateArticle"
-  class="bg-gray-light border m-6 px-3 py-4 w-full">
+    class="bg-gray-light border m-6 px-3 py-4 w-full"
+  >
     <label>
       <h2 class="text-2xl font-semibold text-gray-dark">
         Enter Your Post Title
@@ -46,11 +47,18 @@
     >
       Upload
     </button>
+
+    <div
+      class="absolute left-6 right-6 top-1/2 -translate-y-1/2 bg-gray-light drop-shadow-md shadow-orange z-10 flex flex-col items-center py-4"
+      v-if="isUpdated"
+    >
+      <h3 class="text-xl font-semibold text-gray-dark">Article updated!</h3>
+    </div>
   </form>
 </template>
 
 <script>
-import api from "../services/api";
+import supabase from "~/services/supbase_api";
 
 export default {
   data() {
@@ -58,12 +66,13 @@ export default {
       title: "",
       description: "",
       body: "",
+      isUpdated: false,
     };
   },
   async mounted() {
     const articleId = this.$route.params.id;
-    const response = await api.getArticleByID(articleId);
-    const article = response.data;
+    const response = await supabase.fetchArticleById(articleId);
+    const article = response.data[0];
 
     this.title = article.title;
     this.description = article.description;
@@ -75,13 +84,17 @@ export default {
         title: this.title,
         description: this.description,
         body: this.body,
+        articleId: this.$route.params.id,
       };
 
-      const articleId = this.$route.params.id;
       try {
-        const response = await api.updateArticle(articleId, articleData);
+        const response = await supabase.updateArticle(articleData);
         console.log("Article updated:", response.data);
-        // TODO redirect to the article view or show a success message
+
+        this.isUpdated = true;
+        setTimeout(() => {
+          this.$router.push({ name: "blog" });
+        }, 1000);
       } catch (error) {
         console.error("Error updating article:", error);
       }
