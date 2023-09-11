@@ -37,7 +37,6 @@
             <NuxtLink
               to="/blog"
               class="text-gray-light w-full h-full flex justify-center items-center"
-              href="#"
               >Blogs</NuxtLink
             >
           </li>

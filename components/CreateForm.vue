@@ -16,6 +16,7 @@
         type="text"
         placeholder="Fox Insight os the best blog ever"
         maxlength="60"
+        required
       />
     </label>
 
@@ -30,6 +31,7 @@
         v-model="description"
         class="h-10 border border-gray-dark rounded-md w-full px-3 py-1"
         type="text"
+        required
       />
     </label>
     <label>
@@ -38,6 +40,7 @@
         v-model="body"
         class="min-h-[340px] h-[55%] border border-gray-dark rounded-md w-full px-3 py-3"
         type="text"
+        required
       ></textarea>
     </label>
 
@@ -47,15 +50,19 @@
     >
       Upload
     </button>
+    <Message v-if="isSuccessCreated" :message="'Article created!'" />
   </form>
 </template>
 
 <script setup>
-import supbase_api from "~/services/supbase_api";
+import supabase from "~/services/supbase_api";
+import { useRouter } from 'vue-router'
+const router = useRouter();
 
 const title = ref(null);
 const description = ref(null);
 const body = ref(null);
+const isSuccessCreated = ref(null);
 
 const submitArticle = async () => {
   try {
@@ -65,10 +72,18 @@ const submitArticle = async () => {
       body: body.value,
     };
 
-    // const response = await addArticle(articleData);
-    const response = await supbase_api.addArticle(articleData);
+    // in response could be only error
+    const error = await supabase.addArticle(articleData);
 
-    console.log(response);
+    if (error) {
+      isSuccessCreated.value = false;
+      throw new Error(error);
+    } else {
+      isSuccessCreated.value = true;
+      setTimeout(() => {
+        router.push('/blog')
+      }, 250);
+    }
   } catch (error) {
     console.error(error);
   }

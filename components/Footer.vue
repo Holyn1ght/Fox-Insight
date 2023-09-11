@@ -3,7 +3,7 @@
     <li>
       <ul class="w-28 min-w-full flex justify-around items-center">
         <li>
-          <a href="vk.com">
+          <a href="https://vk.com">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -19,7 +19,7 @@
           </a>
         </li>
         <li>
-          <a href="instagramm.com">
+          <a href="https://instagramm.com">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -47,7 +47,7 @@
           </a>
         </li>
         <li>
-          <a href="facebook.com">
+          <a href="https://facebook.com">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="23"
@@ -68,7 +68,7 @@
       </ul>
     </li>
     <li>
-      <a class="text-2xl font-bold text-orange" href="#">Fox Insight</a>
+      <NuxtLink class="text-2xl font-bold text-orange" to='/blog' >Fox Insight</NuxtLink>
     </li>
   </ul>
 </template>

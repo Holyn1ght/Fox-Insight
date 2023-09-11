@@ -52,7 +52,7 @@ async function fetchArticleById(articleId) {
 const addArticle = async (articleData) => {
   try {
     const userData = await getUserInfo();
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("articles")
       .insert([
         {
@@ -64,7 +64,6 @@ const addArticle = async (articleData) => {
         },
       ])
       .select();
-
     if (error) throw new Error(error.message);
   } catch (error) {
     console.error("Error while adding article:", error.message);
@@ -99,7 +98,7 @@ const deleteArticle = async (articleId) => {
       .from("articles")
       .delete()
       .eq("id", articleId);
-
+    console.log("Article deleted:", articleId);
     if (error) throw new Error(error.message);
   } catch (error) {
     console.error("Error while deleting article");
@@ -111,6 +110,14 @@ const getUserInfo = async () => {
     data: { user },
   } = await supabase.auth.getUser();
   return user;
+};
+
+const isUserAdmin = async () => {
+  const { data, error } = await supabase.rpc("is_claims_admin");
+  if (error) {
+    throw error;
+  }
+  return data;
 };
 
 const get_claims = async (uid) => {
@@ -137,6 +144,7 @@ const delete_claim = async (uid, claim) => {
   return { data, error };
 };
 
+const client = supabase;
 export default {
   fetchArticles,
   fetchArticleById,
@@ -144,8 +152,10 @@ export default {
   updateArticle,
   deleteArticle,
   getUserInfo,
+  isUserAdmin,
   get_claims,
   get_claim,
   set_claim,
   delete_claim,
+  client,
 };
