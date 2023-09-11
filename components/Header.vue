@@ -6,9 +6,9 @@
     </div>
     <!-- Test code end block -->
     <ul class="flex justify-around h-full items-center relative">
-      <li><p class="font-bold text-orange">Home</p></li>
+      <li><p class="font-bold text-orange">{{pageName}}</p></li>
       <li>
-        <img class="w-8" src="../src/img/fox-logo.svg" alt="Fox Insight logo" />
+        <img class="w-8" src="~public/fox-logo.svg" alt="Fox Insight logo" />
       </li>
       <li>
         <button @click="toggleMenu" class="p-2 hover:focus:opacity-40">
@@ -65,7 +65,16 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
+const route = useRoute();  
 const supabase = useSupabaseClient();
+
+
+const pageName = ref(route.name);
+// Do first letter uppercase
+pageName.value = pageName.value.charAt(0).toUpperCase() + pageName.value.slice(1);
+
+
 
 const session = ref(null);
 

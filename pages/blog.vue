@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <main>
-      <ArticleList :articles="articles" />
+      <ArticleList/>
     </main>
     <Footer></Footer>
   </div>
