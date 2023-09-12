@@ -1,63 +1,55 @@
-# Nuxt 3 Minimal Starter
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# Fox Insight
 
-## Setup
+This project is a blog platform built with Nuxt3.js, leveraging the power of Supabase for backend operations. It allows users to Create, Remove, Update and Edit (CRUD) articles, as well as handle user claims for more tailored experiences.
 
-Make sure to install the dependencies:
+## Project Structure
 
-```bash
-# npm
-npm install
+For a detailed breakdown of the project's directory and file structure, refer to [readme/project_structure.md](readme/project_structure.md).
 
-# pnpm
-pnpm install
 
-# yarn
-yarn install
+```
+.
+├── components            # Vue components for UI elements and functionalities
+├── nuxt.config.ts        # Nuxt configuration file
+├── package.json          # Defines project and dependencies
+├── pages                 # Nuxt pages representing different routes in the app
+├── public                # Static assets
+├── readme                # Documentation related to the project
+├── services              # Services to interact with backend and external APIs
+├── tailwind.config.js    # TailwindCSS configuration file
 ```
 
-## Development Server
+## Documentation
 
-Start the development server on `http://localhost:3000`:
+Documentation is crucial for the efficient development and maintenance of the platform. Here's how you can make the best use of it:
 
-```bash
-# npm
-npm run dev
+### 1. **Starting with Nuxt 3**
 
-# pnpm
-pnpm run dev
+Refer to `readme/Nuxt3_start.md`. It provides an overview of the project setup, especially if you're new to Nuxt 3.
 
-# yarn
-yarn dev
-```
+### 2. **Database Schema**
 
-## Production
+For an understanding of how data is structured and related, refer to `readme/database_shema.md`.
 
-Build the application for production:
+### 3. **Supabase API Integration**
 
-```bash
-# npm
-npm run build
+To understand how the project interfaces with Supabase for CRUD operations and more, check out `readme/supbase_api.md`.
 
-# pnpm
-pnpm run build
+## Getting Started
 
-# yarn
-yarn build
-```
+To get the project running locally:
 
-Locally preview production build:
+1. Clone the repository.
+2. Install the dependencies with `npm install`.
+3. Start the development server with `npm run dev`.
 
-```bash
-# npm
-npm run preview
+Visit `http://localhost:3000` to see the application running.
 
-# pnpm
-pnpm run preview
+## Contribution
 
-# yarn
-yarn preview
-```
+Contributions are always welcome! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Licensing
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.

@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="w-full flex flex-col">
     <template
       v-if="isAccessDenied === null || isAccessDenied === undefined"
     ></template>
     <form
       v-else-if="!isAccessDenied"
       @submit.prevent="updateArticle"
-      class="bg-gray-light border m-6 px-3 py-4 w-full"
+      class="bg-gray-light border m-6 px-3 py-4 flex-grow"
     >
       <label>
         <h2 class="text-2xl font-semibold text-gray-dark">
@@ -45,7 +45,7 @@
         ></textarea>
       </label>
       <button
-        class="h-6 mt-2 flex justify-center items-center text-white bg-green rounded-md w-full font-semibold"
+        class="h-6 mt-auto flex justify-center items-center text-white bg-green rounded-md w-full font-semibold"
         type="submit"
       >
         Upload

@@ -1,10 +1,5 @@
 <template>
   <div class="h-12 bg-gray-light z-10">
-    <!-- Test code start block -->
-    <div class="absolute">
-      <!-- <p>{{ session }}</p> -->
-    </div>
-    <!-- Test code end block -->
     <ul class="flex justify-around h-full items-center relative">
       <li><p class="font-bold text-orange">{{pageName}}</p></li>
       <li>
@@ -73,14 +68,6 @@ const supabase = useSupabaseClient();
 const pageName = ref(route.name);
 // Do first letter uppercase
 pageName.value = pageName.value.charAt(0).toUpperCase() + pageName.value.slice(1);
-
-
-
-const session = ref(null);
-
-const { data, error } = await supabase.auth.getSession();
-
-session.value = data;
 
 function toggleMenu() {
   document.getElementById("burgerMenu").classList.toggle("hidden");

@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import supapi from "../services/supbase_api";
+import supapi from "~/services/supbase_api";
 
 const articles = ref(null);
 const apiError = ref(null);

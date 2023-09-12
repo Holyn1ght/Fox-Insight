@@ -18,5 +18,6 @@
 
 main {
   flex: 1;
+  justify-content: center;
 }
 </style>
